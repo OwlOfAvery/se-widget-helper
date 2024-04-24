@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family={{fontName}}:{{fontWeight}}');
+
+:root {
+	--font-name: '{fontName}';
+	--font-color: '{{fontColor}}';
+	--font-weight: '{{fontWeight}}';
+	--font-size: '{{fontSize}}' px;
+}
