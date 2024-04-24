@@ -1,0 +1,12 @@
+{
+	"name": "se-widget-helper",
+	"version": "1.0.0",
+	"description": "SE Widget Helper is a custom setup made to streamline the StreamElements widget developer experience.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Owl of Avery",
+	"license": "MIT"
+}
