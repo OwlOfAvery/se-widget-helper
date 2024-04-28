@@ -9,7 +9,8 @@ export default defineConfig(({ command }) => {
 	const sharedConfig = {
 		resolve: {
 			alias: {
-				'@src': resolve(__dirname, './src')
+				'@src': resolve(__dirname, './src'),
+				'@dev': resolve(__dirname, './app/src')
 			}
 		},
 		css: {
