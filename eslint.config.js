@@ -4,7 +4,8 @@ export default [
 	{
 		rules: {
 			'vue/html-indent': ['error', 'tab'],
-			'vue/script-indent': ['error', 'tab']
+			'vue/script-indent': ['error', 'tab'],
+			'vue/max-attributes-per-line': 'off'
 		}
 	}
 ]
