@@ -25,11 +25,12 @@ const emit = defineEmits(['drag'])
 
 const dragHandler = (state) => {
 	const [x, y] = state.movement
-	const first = state.first
+	const { first, last } = state
 	emit('drag', {
 		deltaX: x,
 		deltaY: y,
-		first
+		first,
+		last
 	})
 }
 </script>

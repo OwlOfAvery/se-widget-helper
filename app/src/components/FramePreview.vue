@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onBeforeMount } from 'vue'
 import FrameResizeHandle from './FrameResizeHandle.vue'
 
 const minWidth = 256
@@ -31,30 +31,36 @@ const frameHeight = ref(600)
 let lastWidth = frameWidth.value
 let lastHeight = frameHeight.value
 
-function resizeX({ deltaX, first }) {
+function setLocalFrameSettings() {
+	localStorage.setItem(
+		'frameSettings',
+		JSON.stringify({
+			width: frameWidth.value,
+			height: frameHeight.value
+		})
+	)
+}
+
+function resizeX({ deltaX, first, last }) {
+	deltaX = parseInt(deltaX.toFixed(2))
 	first && (lastWidth = frameWidth.value)
 	frameWidth.value = Math.max(lastWidth + deltaX * 2, minWidth)
+	last && setLocalFrameSettings()
 }
-function resizeY({ deltaY, first }) {
+function resizeY({ deltaY, first, last }) {
+	deltaY = parseInt(deltaY.toFixed(2))
 	first && (lastHeight = frameHeight.value)
 	frameHeight.value = Math.max(lastHeight + deltaY, minHeight)
+	last && setLocalFrameSettings()
 }
+onBeforeMount(() => {
+	const frameSettings = localStorage.getItem('frameSettings')
+	if (!frameSettings) return
 
-// const iframeSrc = `
-// <html>
-//     <head>
-//         <script src="https://cdn.streamelements.com/scripts/jquery_3.3.1.min.js"><\/script>
-//         <!-- Pull in source CSS -->
-//         <style>${mainSCSS}</style>
-//     </head>
-//     <\/head>
-//     <body>
-//         <!-- Pull in source HTML -->
-
-//         <!-- Pull in source JS -->
-//         <script>${mainJS}<\/script>
-//     <\/body>
-// <\/html>`
+	const { width = 400, height = 600 } = JSON.parse(frameSettings) || {}
+	frameWidth.value = width
+	frameHeight.value = height
+})
 </script>
 
 <style lang="scss" scoped>
